@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hongos vs Setas 0</title>
-    <link rel="icon" href="favicon-32x32.png" type="image/png">
     <style>
       body {
         font-family: "Comic Sans MS", cursive, sans-serif;
@@ -15,6 +14,7 @@
         background-image: url("/clouds.png");
         background-repeat: repeat-x;
         background-position: top;
+        overflow-x: hidden;
       }
 
       /* Estilos para la pantalla de inicio */
@@ -633,6 +633,121 @@
       .creditos p {
         color: white;
         margin-bottom: 5px;
+      }
+
+      /* Estilos responsivos para móviles */
+      @media (max-width: 768px) {
+        .titulo-inicio {
+          font-size: 40px;
+          padding: 0 15px;
+        }
+
+        .boton-jugar {
+          font-size: 24px;
+          padding: 12px 40px;
+        }
+
+        .botones-adicionales {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .personajes-inicio {
+          padding: 0 20px;
+        }
+
+        .hongo-inicio, .zombie-inicio {
+          font-size: 60px;
+        }
+
+        .plantas-seleccion {
+          height: 80px;
+        }
+
+        .planta-card {
+          width: 55px;
+          height: 75px;
+        }
+
+        .planta-img {
+          width: 35px;
+          height: 35px;
+          font-size: 20px;
+        }
+
+        #contenedor-principal {
+          height: calc(100vh - 160px);
+          margin-top: 160px;
+          padding: 5px;
+          gap: 1px;
+        }
+
+        .elemento {
+          border-width: 1px;
+        }
+
+        .podadora {
+          font-size: 24px;
+        }
+
+        .opcion-planta {
+          width: 45px;
+          height: 45px;
+          font-size: 20px;
+        }
+
+        .zombie {
+          font-size: 30px;
+        }
+
+        .proyectil {
+          font-size: 20px;
+        }
+
+        .planta-colocada {
+          font-size: 30px;
+        }
+
+        .mensaje-fin {
+          font-size: 40px;
+        }
+
+        .boton-reiniciar {
+          font-size: 20px;
+          padding: 12px 30px;
+        }
+      }
+
+      /* Ajustes para pantallas muy pequeñas */
+      @media (max-width: 375px) {
+        .titulo-inicio {
+          font-size: 32px;
+        }
+
+        .boton-jugar {
+          font-size: 20px;
+          padding: 10px 30px;
+        }
+
+        .hongo-inicio, .zombie-inicio {
+          font-size: 50px;
+        }
+
+        .planta-card {
+          width: 50px;
+          height: 70px;
+        }
+
+        .planta-img {
+          width: 30px;
+          height: 30px;
+          font-size: 18px;
+        }
+
+        .opcion-planta {
+          width: 40px;
+          height: 40px;
+        }
       }
     </style>
   </head>
@@ -1628,6 +1743,8 @@
 
                   // Añadir el proyectil al elemento de la planta
                   planta.elemento.parentNode.appendChild(proyectil);
+
+                  // Añadir.elemento.parentNode.appendChild(proyectil);
 
                   // Añadir el proyectil al registro
                   proyectilesEnJuego.push({
