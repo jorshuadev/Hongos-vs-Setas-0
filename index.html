@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hongos vs Zombies 2</title>
+    <title>Hongos vs Setas 0</title>
+    <link rel="icon" href="favicon-32x32.png" type="image/png">
     <style>
       body {
         font-family: "Comic Sans MS", cursive, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #87ceeb; /* Cielo azul */
+        background-color: #87ceeb;
         color: #333;
         background-image: url("/clouds.png");
         background-repeat: repeat-x;
         background-position: top;
-        overflow-x: hidden;
       }
 
       /* Estilos para la pantalla de inicio */
@@ -160,90 +160,96 @@
         transition: opacity 1s ease-in-out;
         min-height: 100vh;
         max-width: 100vw;
-        overflow-x: hidden;
+        overflow: hidden;
       }
 
       .barra-superior {
         position: fixed;
-        top: 0;
+        top: 10px;
         left: 0;
         width: 100%;
         background-color: rgba(139, 69, 19, 0.9);
-        padding: 5px 10px; /* Reducido el padding */
+        padding: 5px 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         z-index: 1000;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         box-sizing: border-box;
-        height: 50px; /* Altura fija reducida */
+        height: 50px;
       }
 
       .sol-contador {
         background-color: #333;
         color: #ffd700;
-        padding: 5px 10px; /* Reducido el padding */
+        padding: 5px 10px;
         border-radius: 20px;
         font-weight: bold;
         display: flex;
         align-items: center;
         border: 2px solid #ffd700;
-        font-size: 14px; /* Tamaño de fuente reducido */
+        font-size: 14px;
       }
 
       .sol-contador::before {
         content: "☀️";
         margin-right: 5px;
-        font-size: 18px; /* Tamaño reducido */
+        font-size: 18px;
       }
 
       .oleada-contador {
         background-color: #333;
         color: #ff6b6b;
-        padding: 5px 10px; /* Reducido el padding */
+        padding: 5px 10px;
         border-radius: 20px;
         font-weight: bold;
         display: flex;
         align-items: center;
         border: 2px solid #ff6b6b;
-        font-size: 14px; /* Tamaño de fuente reducido */
+        font-size: 14px;
       }
 
       .oleada-contador::before {
         content: "🧟";
         margin-right: 5px;
-        font-size: 18px; /* Tamaño reducido */
+        font-size: 18px;
       }
 
       .plantas-seleccion {
         position: fixed;
-        top: 60px; /* Espacio entre barras */
+        top: 70px;
         left: 0;
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        gap: 5px; /* Reducido el gap */
+        gap: 5px;
         background-color: rgba(139, 69, 19, 0.9);
-        padding: 5px; /* Reducido el padding */
+        padding: 5px;
         overflow-x: auto;
         z-index: 900;
         box-sizing: border-box;
-        height: 100px; /* Altura aumentada */
+        height: 100px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .plantas-seleccion::-webkit-scrollbar {
+        display: none;
       }
 
       .planta-card {
-        width: 65px; /* Aumentado el ancho */
-        height: 85px; /* Aumentado el alto */
+        width: 65px;
+        height: 85px;
         background-color: #6c5353;
         color: white;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        font-size: 11px; /* Tamaño de fuente ajustado */
+        font-size: 11px;
         border-radius: 8px;
         border: 2px solid #4a4a4a;
-        padding: 3px; /* Reducido el padding */
+        padding: 3px;
         transition: all 0.2s;
         cursor: pointer;
         position: relative;
@@ -251,11 +257,10 @@
       }
 
       .planta-card:hover {
-        transform: translateY(-3px); /* Reducido el efecto */
+        transform: translateY(-3px);
         box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
       }
 
-      /* Estilo para la planta seleccionada */
       .planta-seleccionada {
         background-color: #4a8f29;
         border: 2px solid #ffd700;
@@ -264,14 +269,14 @@
       }
 
       .planta-img {
-        width: 45px; /* Aumentado el tamaño */
-        height: 45px; /* Aumentado el tamaño */
+        width: 45px;
+        height: 45px;
         background-color: #5da03a;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 24px; /* Tamaño aumentado */
+        font-size: 24px;
       }
 
       .planta-costo {
@@ -281,29 +286,29 @@
         background-color: #333;
         color: #ffd700;
         border-radius: 50%;
-        width: 18px; /* Reducido el tamaño */
-        height: 18px; /* Reducido el tamaño */
+        width: 18px;
+        height: 18px;
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: bold;
         border: 1px solid #ffd700;
-        font-size: 10px; /* Tamaño reducido */
+        font-size: 10px;
       }
 
       #contenedor-principal {
         display: grid;
-        grid-template-columns: repeat(10, 1fr); /* Añadida una columna extra */
+        grid-template-columns: repeat(10, 1fr);
         grid-template-rows: repeat(5, 1fr);
         gap: 2px;
         width: 100%;
-        background-color: #4a8f29; /* Verde césped */
+        background-color: #4a8f29;
         padding: 10px;
-        border: 5px solid #8b4513; /* Marrón para el borde */
+        border: 5px solid #8b4513;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        height: calc(100vh - 170px); /* Ajustado para las barras más grandes */
-        margin-top: 170px; /* Ajustado para las barras más grandes */
+        height: calc(100vh - 180px);
+        margin-top: 180px;
         box-sizing: border-box;
         position: relative;
         overflow: hidden;
@@ -312,7 +317,7 @@
       .elemento {
         width: 100%;
         height: 100%;
-        background-color: #5da03a; /* Verde más claro para las casillas */
+        background-color: #5da03a;
         border: 1px dashed #4a8f29;
         color: white;
         display: flex;
@@ -328,9 +333,8 @@
         cursor: pointer;
       }
 
-      /* Estilo para la columna de podadoras */
       .columna-podadoras {
-        background-color: #8b4513 !important; /* Color marrón para diferenciar */
+        background-color: #8b4513 !important;
         border: 1px solid #6c5353 !important;
         cursor: default !important;
       }
@@ -339,14 +343,12 @@
         background-color: #8b4513 !important;
       }
 
-      /* Estilo para las podadoras */
       .podadora {
         font-size: 30px;
         position: relative;
         z-index: 5;
       }
 
-      /* Animación para las podadoras activadas */
       @keyframes podadora-activada {
         0% {
           left: 0;
@@ -365,20 +367,20 @@
       .opciones-plantas {
         display: flex;
         justify-content: space-around;
-        margin: 10px 5px; /* Reducido el margen */
+        margin: 10px 5px;
         flex-wrap: wrap;
-        gap: 5px; /* Reducido el gap */
+        gap: 5px;
       }
 
       .opcion-planta {
-        width: 60px; /* Reducido el tamaño */
-        height: 60px; /* Reducido el tamaño */
+        width: 60px;
+        height: 60px;
         background-color: #8b4513;
         color: white;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 24px; /* Tamaño reducido */
+        font-size: 24px;
         border-radius: 50%;
         border: 3px solid #6c5353;
         transition: all 0.2s;
@@ -388,7 +390,7 @@
       }
 
       .opcion-planta:hover {
-        transform: scale(1.05); /* Reducido el efecto */
+        transform: scale(1.05);
         box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
       }
 
@@ -426,15 +428,14 @@
         }
       }
 
-      /* Estilos para el botón de pantalla completa */
       #fullscreen-btn {
-        width: 30px; /* Reducido el tamaño */
-        height: 30px; /* Reducido el tamaño */
+        width: 30px;
+        height: 30px;
         background-color: #8b4513;
         border: 2px solid #6c5353;
         border-radius: 50%;
         color: white;
-        font-size: 16px; /* Tamaño reducido */
+        font-size: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -448,19 +449,16 @@
         background-color: #6c5353;
       }
 
-      /* Estilo para cuando estamos en pantalla completa */
       .fullscreen-active {
         background-color: #4a8f29 !important;
       }
 
-      /* Cursor personalizado cuando hay una planta seleccionada */
       .cursor-planta {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%234a8f29" stroke="%23000" stroke-width="2"/></svg>')
             16 16,
           auto;
       }
 
-      /* Estilos para zombies */
       .zombie {
         position: absolute;
         font-size: 40px;
@@ -480,12 +478,11 @@
         }
       }
 
-      /* Estilos para proyectiles */
       .proyectil {
         position: absolute;
         font-size: 24px;
         z-index: 5;
-        animation: volar 4s linear forwards; /* Aumentado a 4s para que lleguen más lejos */
+        animation: volar 4s linear forwards;
       }
 
       @keyframes volar {
@@ -494,10 +491,9 @@
         }
         100% {
           left: 200%;
-        } /* Aumentado a 200% para que lleguen más lejos */
+        }
       }
 
-      /* Estilos para indicadores de daño */
       .indicador-dano {
         position: absolute;
         color: #ff3333;
@@ -519,14 +515,12 @@
         }
       }
 
-      /* Estilos para plantas colocadas */
       .planta-colocada {
         position: relative;
         z-index: 5;
         font-size: 40px;
       }
 
-      /* Pantalla de fin de juego */
       #pantalla-fin {
         position: fixed;
         top: 0;
@@ -576,7 +570,6 @@
         box-shadow: 0 13px 0 #2d5718, 0 20px 25px rgba(0, 0, 0, 0.35);
       }
 
-      /* Tooltip para mostrar información de plantas */
       .tooltip {
         position: absolute;
         background-color: rgba(0, 0, 0, 0.8);
@@ -596,7 +589,6 @@
         opacity: 1;
       }
 
-      /* Botón de música */
       #music-btn {
         width: 30px;
         height: 30px;
@@ -622,16 +614,45 @@
       .music-off {
         background-color: #ff3333 !important;
       }
+
+      .creditos {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+        max-width: 80%;
+        text-align: center;
+        display: none;
+      }
+
+      .creditos h3 {
+        color: #4a8f29;
+        margin-bottom: 10px;
+      }
+
+      .creditos p {
+        color: white;
+        margin-bottom: 5px;
+      }
     </style>
   </head>
   <body>
     <!-- Pantalla de inicio -->
     <div id="pantalla-inicio">
-      <h1 class="titulo-inicio">Hongos vs Zombies 2</h1>
+      <h1 class="titulo-inicio">Hongos vs Setas 0</h1>
       <div class="boton-jugar" id="btn-jugar">JUGAR</div>
       <div class="botones-adicionales">
         <div class="boton-secundario">Opciones</div>
-        <div class="boton-secundario">Créditos</div>
+        <div class="boton-secundario" id="btn-creditos">Créditos</div>
+      </div>
+      <div class="creditos" id="seccion-creditos">
+        <h3>Créditos</h3>
+        <p>
+          Desarrollado por: <strong>Shujora</strong> y
+          <strong>JorshuaDev</strong>
+        </p>
+        <p>Hongos vs Setas 0 - Versión Final</p>
+        <div class="boton-secundario" id="cerrar-creditos">Cerrar</div>
       </div>
       <div class="personajes-inicio">
         <div class="hongo-inicio">🍄</div>
@@ -769,6 +790,15 @@
     <!-- Pantalla de fin de juego -->
     <div id="pantalla-fin">
       <div class="mensaje-fin" id="mensaje-fin"></div>
+      <div
+        id="creditos-fin"
+        style="font-size: 16px; margin: 10px 0 20px 0; text-align: center"
+      >
+        <p>
+          Desarrollado por: <strong>Shujora</strong> y
+          <strong>JorshuaDev</strong>
+        </p>
+      </div>
       <div class="boton-reiniciar" id="boton-reiniciar">Reiniciar</div>
     </div>
 
@@ -780,53 +810,6 @@
       />
     </audio>
 
-    <!-- Sonidos del juego -->
-    <audio
-      id="sonido-planta"
-      src="https://assets.mixkit.co/active_storage/sfx/2652/2652-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-seleccion"
-      src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-zombie"
-      src="https://assets.mixkit.co/active_storage/sfx/209/209-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-podadora"
-      src="https://assets.mixkit.co/active_storage/sfx/2148/2148-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-sol"
-      src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-planta-derrotada"
-      src="https://assets.mixkit.co/active_storage/sfx/2030/2030-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-zombie-derrotado"
-      src="https://assets.mixkit.co/active_storage/sfx/2068/2068-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-victoria"
-      src="https://assets.mixkit.co/active_storage/sfx/1993/1993-preview.mp3"
-      preload="auto"
-    ></audio>
-    <audio
-      id="sonido-derrota"
-      src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"
-      preload="auto"
-    ></audio>
-
     <script>
       // Variables globales
       let soles = 50;
@@ -836,16 +819,15 @@
       let zombiesEnJuego = [];
       let plantasEnJuego = [];
       let proyectilesEnJuego = [];
-      let podadorasActivas = [true, true, true, true, true]; // Estado de las podadoras por fila
+      let podadorasActivas = [true, true, true, true, true];
       let intervaloOleadas;
       let intervaloZombies;
       let intervaloProyectiles;
       let intervaloColisiones;
       let juegoTerminado = false;
-      let musicaActivada = true; // Control de música
-      let sonidoActivado = true; // Control de sonido
+      let musicaActivada = true;
 
-      // Definición de tipos de zombies (equilibrados)
+      // Definición de tipos de zombies
       const tiposZombies = [
         {
           tipo: "podador",
@@ -905,15 +887,6 @@
         },
       ];
 
-      // Función para reproducir sonidos
-      function reproducirSonido(id) {
-        if (sonidoActivado) {
-          const sonido = document.getElementById(id);
-          sonido.currentTime = 0;
-          sonido.play();
-        }
-      }
-
       // Función para controlar la música
       function controlarMusica(accion) {
         const musica = document.getElementById("musica-lofi");
@@ -945,7 +918,7 @@
         zombiesEnJuego = [];
         plantasEnJuego = [];
         proyectilesEnJuego = [];
-        podadorasActivas = [true, true, true, true, true]; // Reiniciar podadoras
+        podadorasActivas = [true, true, true, true, true];
         juegoTerminado = false;
 
         // Actualizar contadores
@@ -988,9 +961,6 @@
         plantasCards.forEach((card) => {
           // Añadir tooltips para mostrar información de las plantas
           const descripcion = card.getAttribute("data-descripcion");
-          const tipo = card.getAttribute("data-tipo");
-          const vida = card.getAttribute("data-vida");
-          const dano = card.getAttribute("data-dano");
 
           const tooltip = document.createElement("div");
           tooltip.className = "tooltip";
@@ -1112,14 +1082,19 @@
                         }
                       }
 
-                      // Guardar el contenido actual para preservar zombies
-                      const contenidoActual = this.innerHTML;
-
                       // Limpiar el contenido de césped pero preservar zombies
+                      const zombiesEnCasilla = Array.from(
+                        this.querySelectorAll(".zombie")
+                      );
                       this.innerHTML = "";
 
                       // Añadir la planta
                       this.appendChild(planta);
+
+                      // Volver a añadir los zombies que estaban en la casilla
+                      zombiesEnCasilla.forEach((zombie) => {
+                        this.appendChild(zombie);
+                      });
 
                       // Restar el costo
                       soles -= plantaSeleccionada.costo;
@@ -1260,7 +1235,7 @@
 
             girasol.parentNode.appendChild(sol);
           }
-        }, 12000); // Generación más rápida: cada 12 segundos
+        }, 12000); // Generación cada 12 segundos
       }
 
       // Función para mostrar indicador de soles
@@ -1297,7 +1272,7 @@
         });
 
         // Iniciar el intervalo para generar semillas
-        intervaloSemillas = setInterval(generarSemilla, 2500); // Más rápido: cada 2.5 segundos
+        intervaloSemillas = setInterval(generarSemilla, 2500); // Cada 2.5 segundos
       }
 
       // Función para generar una semilla en un contenedor aleatorio
@@ -1373,15 +1348,15 @@
           }
 
           generarOleada();
-        }, 60000 - oleadaActual * 2000); // Reducir tiempo entre oleadas a medida que avanza el juego
+        }, 60000 - oleadaActual * 2000); // Reducir tiempo entre oleadas
       }
 
       // Función para generar una oleada de zombies
       function generarOleada() {
-        // Calcular número de zombies basado en la oleada actual (aumenta con cada oleada)
+        // Calcular número de zombies basado en la oleada actual
         const numZombies = Math.min(3 + oleadaActual * 2, 25);
 
-        // Calcular intervalo entre zombies (más rápido en oleadas avanzadas)
+        // Calcular intervalo entre zombies
         const intervaloBase = Math.max(6000 - oleadaActual * 400, 1500);
 
         // Limpiar intervalo anterior si existe
@@ -1411,7 +1386,6 @@
         const fila = Math.floor(Math.random() * 5);
 
         // Seleccionar un tipo de zombie aleatorio
-        // En oleadas avanzadas, mayor probabilidad de zombies fuertes
         let tipoZombie;
         if (oleadaActual >= 8) {
           // Oleadas finales: más probabilidad de zombies fuertes
@@ -1460,14 +1434,14 @@
         zombie.setAttribute("data-velocidad", tipoZombie.velocidad);
 
         // Encontrar el elemento de la fila y última columna
-        const elemento = document.getElementById(`elemento-${fila}-9`); // Ahora la última columna es la 9
+        const elemento = document.getElementById(`elemento-${fila}-9`);
         elemento.appendChild(zombie);
 
         // Añadir el zombie al registro
         zombiesEnJuego.push({
           elemento: zombie,
           fila: fila,
-          columna: 9, // Ahora la última columna es la 9
+          columna: 9,
           tipo: tipoZombie.tipo,
           vida: tipoZombie.vida,
           vidaMax: tipoZombie.vida,
@@ -1720,10 +1694,6 @@
                 zombiesEnJuego.splice(j, 1);
                 continue;
               }
-              {
-                zombiesEnJuego.splice(j, 1);
-                continue;
-              }
 
               // Verificar si están en la misma fila
               if (
@@ -1955,6 +1925,19 @@
         // Añadir evento al botón de música
         const musicBtn = document.getElementById("music-btn");
         musicBtn.addEventListener("click", toggleMusic);
+
+        // Configurar botones de créditos
+        const btnCreditos = document.getElementById("btn-creditos");
+        const seccionCreditos = document.getElementById("seccion-creditos");
+        const cerrarCreditos = document.getElementById("cerrar-creditos");
+
+        btnCreditos.addEventListener("click", function () {
+          seccionCreditos.style.display = "block";
+        });
+
+        cerrarCreditos.addEventListener("click", function () {
+          seccionCreditos.style.display = "none";
+        });
       };
     </script>
   </body>
